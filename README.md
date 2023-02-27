@@ -20,7 +20,7 @@
 <dependency>
     <groupId>au.com.dius.pact.consumer</groupId>
     <artifactId>junit5</artifactId>
-    <version>4.1.7</version>
+    <version>4.4.7</version>
 </dependency>
 ```
 
@@ -64,7 +64,7 @@
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
                 classes = {OrderApplication.class})
 @ExtendWith(PactConsumerTestExt.class)
-@PactTestFor(providerName = "BeerService")
+@PactTestFor(pactVersion = PactSpecVersion.V3, providerName = "BeerService")
 public class OrderServiceClientPactTest {
 
   @MockBean private ItemService itemService;
@@ -111,7 +111,7 @@ public class OrderServiceClientPactTest {
     *   `@PactTestFor(providerName = "BeerService")` pact annotation that informs which provider the tests should be directed to.
 *   `@MockBean private ItemService itemService` service instance that will be used to execute the integration with the provider.
 *   **Mock Method**
-    *   `@Pact(consumer = "OrderService")` annotation to tell which service requires the data.
+    *   `@PactTestFor(pactVersion = PactSpecVersion.V3, providerName = "BeerService")` annotation to tell which service requires the data.
     *   `PactDslWithProvider` the parameter that provides a builder to make the request and response expected between the two services.
 *   **Unit Test**
     *   `@Test` Annotation that identifies the method below the code as a unit test.
